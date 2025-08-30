@@ -1,0 +1,8 @@
+{
+  "name": "rentals-kits",
+  "version": "1.0.0",
+  "description": "Landing page for Rental Kits",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
