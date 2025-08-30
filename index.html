@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rental Kits</title>
+  <meta name="description" content="Templates and checklists for stress-free student rentals." />
+  <style>
+    body{font-family:sans-serif;margin:0;background:#f8fafc;color:#0f172a;}
+    header,section,footer{padding:40px 20px;}
+    header{background:#fff;border-bottom:1px solid #e2e8f0;}
+    .container{max-width:800px;margin:0 auto;}
+    h1{font-size:2.5rem;margin-bottom:16px;}
+    h2{font-size:1.75rem;margin:24px 0 12px;}
+    .btn{display:inline-block;padding:12px 24px;background:#0f172a;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;}
+    .features{display:grid;gap:16px;margin-top:24px;}
+    @media (min-width:600px){.features{grid-template-columns:repeat(3,1fr);}}
+    footer{background:#fff;border-top:1px solid #e2e8f0;font-size:14px;text-align:center;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Rental Kits</h1>
+      <p>Clean templates and checklists for stress-free move-ins and roommate agreements.</p>
+      <a href="#pricing" class="btn">Get Started</a>
+    </div>
+  </header>
+  <section>
+    <div class="container">
+      <h2>What's Inside</h2>
+      <div class="features">
+        <div>
+          <strong>Move-In/Out Kit</strong>
+          <p>Checklists and deposit forms to set expectations from day one.</p>
+        </div>
+        <div>
+          <strong>Lease Pack</strong>
+          <p>Room-by-room rules and agreements designed for student housing.</p>
+        </div>
+        <div>
+          <strong>Bundle</strong>
+          <p>Everything you need to manage tenants and roommates with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="pricing" style="background:#fff;">
+    <div class="container">
+      <h2>Pricing</h2>
+      <p>Move-In/Out Kit $12 · Lease Pack $29 · Bundle $35</p>
+      <a href="#" class="btn">Buy Bundle</a>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Rental Kits • Not legal advice
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
