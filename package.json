@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Landing page for Rental Kits",
   "scripts": {
+    "start": "node server.js",
     "test": "node test.js"
   }
 }
