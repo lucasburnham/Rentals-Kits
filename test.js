@@ -4,6 +4,15 @@ const assert = require('assert');
 // Read index.html
 const html = fs.readFileSync('index.html', 'utf8');
 
+// Ensure the main heading is present with the expected text
+const headingMatch = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+const headingText = headingMatch ? headingMatch[1].trim() : '';
+assert.strictEqual(
+  headingText,
+  'Rental Kits',
+  'Main heading should read "Rental Kits"'
+);
+
 // Extract the content of the first element with class "product-links"
 const productLinksMatch = html.match(/<[^>]*class=["'][^"']*product-links[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
 const productLinksContent = productLinksMatch ? productLinksMatch[1] : '';
