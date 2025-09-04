@@ -5,7 +5,9 @@ const assert = require('assert');
 const html = fs.readFileSync('index.html', 'utf8');
 
 // Extract the content of the first element with class "product-links"
-const productLinksMatch = html.match(/<[^>]*class=["'][^"']*product-links[^"']*["'][^>]*>([\s\S]*?)<\/[^>]+>/i);
+const productLinksMatch = html.match(
+  /<[^>]*class=["'][^"']*product-links[^"']*["'][^>]*>([\s\S]*?)<\/div>/i
+);
 const productLinksContent = productLinksMatch ? productLinksMatch[1] : '';
 
 // Find all anchor opening and closing tags within the section
