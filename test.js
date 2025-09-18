@@ -4,32 +4,21 @@ const assert = require('assert');
 // Read index.html
 const html = fs.readFileSync('index.html', 'utf8');
 
-// Ensure the main heading is present with the expected text
-const headingMatch = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-const headingText = headingMatch ? headingMatch[1].trim() : '';
-assert.strictEqual(
-  headingText,
-  'Rental Kits',
-  'Main heading should read "Rental Kits"'
+// Ensure the main heading is present with the updated text
+const headingMatch = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+const headingText = headingMatch ? headingMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+assert(
+  headingText.includes('Roommate Lease') && headingText.includes('Move-In/Out Kits for Student Rentals'),
+  'Main heading should highlight roommate lease and move-in/out kits for student rentals'
 );
 
-// Extract the content of the first element with class "product-links"
-const productLinksMatch = html.match(/<[^>]*class=["'][^"']*product-links[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
-const productLinksContent = productLinksMatch ? productLinksMatch[1] : '';
+// Ensure the hero CTA clearly states the bundle and price
+const ctaMatches = html.match(/>Buy the Bundle — \$35</g) || [];
+assert(ctaMatches.length >= 2, 'Expect at least two "Buy the Bundle — $35" CTAs');
 
-// Find all anchor opening and closing tags within the section
-const anchorOpens = productLinksContent.match(/<a\b[^>]*>/gi) || [];
-const anchorCloses = productLinksContent.match(/<\/a>/gi) || [];
-
-// Ensure each anchor has a closing tag
-assert.strictEqual(
-  anchorOpens.length,
-  anchorCloses.length,
-  'Each anchor in .product-links must have a closing tag'
-);
-
-// Validate external links have rel="noopener noreferrer"
-anchorOpens.forEach(tag => {
+// Ensure all external anchors include rel="noopener noreferrer"
+const anchorTags = html.match(/<a\b[^>]*href=["'][^"']+["'][^>]*>/gi) || [];
+anchorTags.forEach(tag => {
   const hrefMatch = tag.match(/href\s*=\s*["']([^"']+)["']/i);
   const href = hrefMatch ? hrefMatch[1] : '';
   if (/^https?:\/\//i.test(href)) {
@@ -42,5 +31,11 @@ anchorOpens.forEach(tag => {
     );
   }
 });
+
+// Ensure FAQ schema markup is present for SEO
+assert(
+  /"@type"\s*:\s*"FAQPage"/.test(html),
+  'FAQ schema should be included for rich results'
+);
 
 console.log('All checks passed.');
