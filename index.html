@@ -554,6 +554,22 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+    const buyLinks = document.querySelectorAll(
+      'a[href="https://www.etsy.com/listing/4360689808/byuuvu-move-inout-kit-checklist-roommate"]'
+    );
+
+    buyLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        fbq('track', 'Purchase', {
+          value: 35.00,
+          currency: 'USD',
+          content_name: 'Roommate Lease & Move-In/Out Bundle',
+          event_source: 'BuyButton'
+        });
+      });
+    });
+  </script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
